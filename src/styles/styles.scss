@@ -1,0 +1,133 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,regular,italic,500,500italic,700,700italic,900,900italic&display=swap);
+
+$height: 46px;
+$dropdown-offset: 6px;
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+#app {
+  padding-top: 5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.wrap {
+  width: 500px;
+}
+
+.select {
+  width: 100%;
+  position: relative;
+  color: rgb(25, 25, 25);
+  z-index: 100;
+  box-sizing: border-box;
+
+  &.open {
+    .select__dropdown {
+      display: block;
+    }
+    .select__backdrop {
+      display: block;
+    }
+    .select__input {
+      border-width: 2px;
+      border-color: rgb(38, 132, 255);
+    }
+    .select__icon {
+      transform: rotateZ(180deg);
+      transition: transform 0.15s linear;
+    }
+  }
+
+  &.visible-backdrop {
+    .select__backdrop {
+      background: rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  &__value-container {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: $height;
+    padding: 0 1rem;
+    width: 100%;
+    pointer-events: none;
+    box-sizing: border-box;
+  }
+
+  &__value {
+    user-select: none;
+    box-sizing: border-box;
+  }
+
+  &__icon {
+    width: 24px;
+    height: 24px;
+    transform: rotateZ(0deg);
+    transition: transform 0.15s linear;
+  }
+
+  &__input {
+    width: 100%;
+    height: $height;
+    background: #fff;
+    border: 1px solid rgb(204, 204, 204);
+    border-radius: 5px;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: pointer;
+  }
+
+  &__dropdown {
+    display: none;
+    position: absolute;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px 0;
+    top: $height + $dropdown-offset;
+    left: 0;
+    right: 0;
+    max-height: 200px;
+    overflow-y: auto;
+    box-shadow: 0px 8px 20px 0px rgb(0 0 0 / 3%);
+  }
+
+  &__list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  &__backdrop {
+    position: fixed;
+    display: none;
+    z-index: -1;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background: transparent;
+  }
+
+  &__item {
+    padding: 0.8rem;
+    box-sizing: border-box;
+
+    &:hover {
+      background-color: rgba(38, 132, 255, 0.5);
+      cursor: pointer;
+      transition: 0.15s background-color ease-in;
+    }
+
+    &.selected {
+      color: #fff;
+      background-color: rgb(38, 132, 255);
+    }
+  }
+}
